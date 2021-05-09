@@ -1,0 +1,18 @@
+export default [
+  "html",
+  "css",
+  "scss",
+  "less",
+  "javascript",
+  "java",
+  "swift",
+  "c",
+  "c++",
+  "c#",
+  "php",
+  "rust",
+  "go",
+  "python",
+  "r",
+  "dart",
+];
