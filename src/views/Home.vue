@@ -88,10 +88,18 @@ export default Vue.extend({
     },
     saveCode() {
       this.submitCode(this.addFormData);
+      this.addFormData = {
+        id: uuidv4(),
+        name: "",
+        description: "",
+        language: "",
+        code: "",
+      };
       this.openAddFormDialog = false;
     },
     updateCode() {
       this.editCode(this.editFormData);
+      this.editFormData = {};
       this.openEditFormDialog = false;
     },
     delCode(id: string) {
