@@ -1,16 +1,25 @@
 <template>
-  <v-dialog
-    v-model="openDialog"
-    max-width="600px"
-    @click:outside="$emit('close')"
-    @keydown.esc="$emit('close')"
-  >
-    <v-card class="py-8 px-4">
-      <Form :form="form" @validate="checkIfFormValid" />
-      <v-btn color="red" text @click="$emit('close')"> Discard </v-btn>
-      <v-btn color="indigo" text @click="$emit('save')" :disabled="!isFormValid"> Save </v-btn>
-    </v-card>
-  </v-dialog>
+  <v-overlay :value="openDialog">
+    <v-dialog
+      v-model="openDialog"
+      max-width="600px"
+      @click:outside="$emit('close')"
+      @keydown.esc="$emit('close')"
+    >
+      <v-card class="py-8 px-4">
+        <Form :form="form" @validate="checkIfFormValid" />
+        <v-btn color="red" text @click="$emit('close')"> Discard </v-btn>
+        <v-btn
+          color="indigo"
+          text
+          @click="$emit('save')"
+          :disabled="!isFormValid"
+        >
+          Save
+        </v-btn>
+      </v-card>
+    </v-dialog>
+  </v-overlay>
 </template>
 
 <script lang="ts">
