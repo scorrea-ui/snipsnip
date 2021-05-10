@@ -2,25 +2,33 @@
   <v-container>
     <v-row>
       <v-col cols="12">
-        <v-form @submit.prevent="submit">
+        <v-form ref="form" v-model="isValid">
           <v-text-field
             label="Snippet Name"
             v-model="form.title"
+            :rules="[rules.required]"
           ></v-text-field>
           <v-text-field
             label="Snippet Description"
             v-model="form.description"
           ></v-text-field>
-          <v-select
+          <v-autocomplete
             :items="languages"
+            item-text="value"
+            item-value="language"
             label="Language"
             v-model="form.language"
-          ></v-select>
+            :rules="[rules.required]"
+            auto-select-first
+            chips
+            clearable
+            deletable-chips
+          ></v-autocomplete>
           <v-textarea
-            name="input-7-1"
             label="Snippet Code"
             auto-grow
             v-model="form.code"
+            :rules="[rules.required]"
           ></v-textarea>
         </v-form>
       </v-col>
@@ -42,12 +50,18 @@ export default Vue.extend({
   data() {
     return {
       languages,
+      isValid: false,
+      rules: {
+        required: (value: string) => !!value || "Required.",
+      },
     };
   },
   methods: {
     ...mapActions(["submitCode"]),
-    submit() {
-      this.$emit("save", this.form);
+  },
+  watch: {
+    isValid() {
+      this.$emit("validate", this.isValid);
     },
   },
 });

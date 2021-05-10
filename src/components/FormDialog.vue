@@ -5,10 +5,10 @@
     @click:outside="$emit('close')"
     @keydown.esc="$emit('close')"
   >
-    <v-card>
-      <Form :form="form" />
-      <v-btn color="blue darken-1" text @click="$emit('close')"> Close </v-btn>
-      <v-btn color="blue darken-1" text @click="$emit('save')"> Save </v-btn>
+    <v-card class="py-8 px-4">
+      <Form :form="form" @validate="checkIfFormValid" />
+      <v-btn color="red" text @click="$emit('close')"> Discard </v-btn>
+      <v-btn color="indigo" text @click="$emit('save')" :disabled="!isFormValid"> Save </v-btn>
     </v-card>
   </v-dialog>
 </template>
@@ -21,6 +21,11 @@ export default Vue.extend({
   components: {
     Form,
   },
+  data() {
+    return {
+      isFormValid: false,
+    };
+  },
   props: {
     openDialog: {
       type: Boolean,
@@ -29,6 +34,11 @@ export default Vue.extend({
     form: {
       type: Object,
       required: true,
+    },
+  },
+  methods: {
+    checkIfFormValid(valid: boolean) {
+      this.isFormValid = valid;
     },
   },
 });
