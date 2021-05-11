@@ -8,14 +8,16 @@
     >
       <v-card class="py-8 px-4">
         <Form :form="form" @validate="checkIfFormValid" />
-        <v-btn color="red" text @click="$emit('close')"> Discard </v-btn>
+        <v-btn color="red" text @click="$emit('close')">
+          {{ $t("discard") }}
+        </v-btn>
         <v-btn
           color="indigo"
           text
           @click="$emit('save')"
           :disabled="!isFormValid"
         >
-          Save
+          {{ $t("save") }}
         </v-btn>
       </v-card>
     </v-dialog>

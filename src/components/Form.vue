@@ -4,19 +4,19 @@
       <v-col cols="12">
         <v-form ref="form" v-model="isValid">
           <v-text-field
-            label="Snippet Name"
+            :label="$t('snippetName')"
             v-model="form.title"
             :rules="[rules.required]"
           ></v-text-field>
           <v-text-field
-            label="Snippet Description"
+            :label="$t('snippetDescription')"
             v-model="form.description"
           ></v-text-field>
           <v-autocomplete
             :items="languages"
             item-text="value"
             item-value="language"
-            label="Language"
+            :label="$t('language')"
             v-model="form.language"
             :rules="[rules.required]"
             auto-select-first
@@ -25,7 +25,7 @@
             deletable-chips
           ></v-autocomplete>
           <v-textarea
-            label="Snippet Code"
+            :label="$t('snippetCode')"
             auto-grow
             v-model="form.code"
             :rules="[rules.required]"

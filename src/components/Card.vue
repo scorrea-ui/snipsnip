@@ -10,10 +10,16 @@
           </v-card-text>
           <v-card-actions>
             <v-btn class="mx-2" color="primary" text small @click="editSnippet">
-              Edit
+              {{ $t("edit") }}
             </v-btn>
-            <v-btn class="mx-2" color="red" text small @click="$emit('delete', id)">
-              Delete
+            <v-btn
+              class="mx-2"
+              color="red"
+              text
+              small
+              @click="$emit('delete', id)"
+            >
+              {{ $t("cancel") }}
             </v-btn>
           </v-card-actions>
         </v-card>
